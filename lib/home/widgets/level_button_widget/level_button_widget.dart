@@ -1,24 +1,52 @@
 import 'package:devquizz/core/core.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LevelButtonWidget extends StatelessWidget {
-  const LevelButtonWidget({Key? key}) : super(key: key);
+  final String label;
+  LevelButtonWidget({Key? key, required this.label})
+      : assert(["Fácil", "Médio", "Difícil", "Perito"].contains(label)),
+        super(key: key);
+
+  final config = {
+    "Fácil": {
+      "color": AppColors.levelButtonFacil,
+      "borderColor": AppColors.levelButtonBorderFacil,
+      "fontColor": AppColors.levelButtonTextFacil
+    },
+    "Médio": {
+      "color": AppColors.levelButtonMedio,
+      "borderColor": AppColors.levelButtonBorderMedio,
+      "fontColor": AppColors.levelButtonTextMedio
+    },
+    "Difícil": {
+      "color": AppColors.levelButtonDificil,
+      "borderColor": AppColors.levelButtonBorderDificil,
+      "fontColor": AppColors.levelButtonTextDificil
+    },
+    "Perito": {
+      "color": AppColors.levelButtonPerito,
+      "borderColor": AppColors.levelButtonBorderPerito,
+      "fontColor": AppColors.levelButtonTextPerito
+    },
+  };
+
+  Color get color => config[label]!['color']!;
+  Color get borderColor => config[label]!['borderColor']!;
+  Color get fontColor => config[label]!['fontColor']!;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 25,
-        width: 80,
         decoration: BoxDecoration(
-            color: AppColors.levelButtonFacil,
-            border: Border.fromBorderSide(
-                BorderSide(color: AppColors.levelButtonBorderFacil)),
+            color: color,
+            border: Border.fromBorderSide(BorderSide(color: borderColor)),
             borderRadius: BorderRadius.circular(28)),
-        padding: const EdgeInsets.symmetric(horizontal: 3),
-        child: Center(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
             child: Text(
-          "Fácil",
-          style: TextStyle(color: AppColors.levelButtonTextFacil),
-        )));
+              label,
+              style: GoogleFonts.notoSans(color: fontColor, fontSize: 13),
+            )));
   }
 }
