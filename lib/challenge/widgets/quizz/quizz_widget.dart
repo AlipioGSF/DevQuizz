@@ -1,3 +1,4 @@
+import 'package:devquizz/challenge/widgets/awnser/awnser_widget.dart';
 import 'package:devquizz/core/app_text_styles.dart';
 import 'package:flutter/widgets.dart';
 
@@ -9,13 +10,19 @@ class QuizzWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(children: [
-        Text(
-          title,
-          style: AppTextStyles.heading,
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: Text(
+            title,
+            style: AppTextStyles.heading,
+          ),
         ),
         SizedBox(
           height: 24,
-        )
+        ),
+        AwnserWidget(
+            title:
+                "Possibilita a criação de aplicativos compilados nativamente")
       ]),
     );
   }
